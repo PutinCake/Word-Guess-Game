@@ -1,0 +1,18 @@
+body{
+    background: url(https://wallpaper.wiki/wp-content/uploads/2017/05/Simba-Lion-King-HD-Backgrounds.jpg) no-repeat;
+    background-size: cover;
+}
+
+.jumbotron{
+  width: 500px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.mainbox{
+    text-align: center;
+    margin: 0 auto;
+    background: lightpink;
+    border-radius: 15px;
+    opacity: 0.8;
+}
