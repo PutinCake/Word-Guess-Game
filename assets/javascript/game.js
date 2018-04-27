@@ -20,73 +20,69 @@ console.log(computerWords);
     }
 
     guessedWordLine();
+    
+    //=======try to set reset btn but failed=====
+    // function reset(){
+    //     wins = 0;
+    //     guessesLeft = 9;
+    //     rightLetter = [];
+    //     wrongLetter = [];
+    //     guessedWord = [];
+    //     userGuesses = []; 
+    // }
 
     function updateDisplay(){
-        document.querySelector('#word-blanks').textContent = guessedWord.join(' ');
+         document.querySelector('#word-blanks').textContent = guessedWord.join(' ');
+         document.querySelector('#numWins').textContent = wins;
+     }
+
+    function wrongDisplay(){
+        document.querySelector('#showedLetters').textContent = wrongLetter;
+        document.querySelector('#numLeft').textContent = guessesLeft;
     }
 
-    
     // function reset(){
     //     computerWords = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     //     guessedWordLine();
     // }
+  //onkeyup function
+    document.onkeyup = function(event){
+        userGuesses = event.key;
 
-        //onkeyup function
-        document.onkeyup = function(event){
-            userGuesses = event.key;
-            console.log(userGuesses);
-            for(var i = 0; i < computerWords.length; i++){
-                if(computerWords[i] === userGuesses){
-                    guessedWord[i] = userGuesses;
-                    updateDisplay();
-                    winCounter++;
-                    winOrLose();
-                } 
-            }
-            if (!guessedWord.includes(userGuesses)) {
-                wrongLetter.push(userGuesses);
-            }
-            guessesLeft--;            
-            winOrLose();
+
+        //console.log(userGuesses);
+        for(var i = 0; i < computerWords.length; i++){
+            if(computerWords[i] === userGuesses){
+                guessedWord[i] = userGuesses;
+                updateDisplay();
+                //winCounter++;
+                winOrLose();
+            } 
         }
-
-        function winOrLose(){
-            if(winCounter === computerWords.length){
-                alert('Winner!');
-                wins++;
-                console.log(wins);
-            } else {
-                if (guessesLeft === 0) {
-                    alert('Loser!');
-                }
-            }
-
+        if (!guessedWord.includes(userGuesses)) {
+            wrongLetter.push(userGuesses);
+            wrongDisplay()
+        }
+        guessesLeft--;            
+        winOrLose();
     }
-/*
-    var html = 
-    "<h1>PRESS ANY KEY TO GET STRATED!!!</h1>" +
-    "<p>Wins:"  + wins + "</p>"+
-    "<p>Word:</p>" +
-    "<p>" + computerWords + "</p>" +
-    "<p>Numbers of Guesses left: " + guessesLeft + "</p>"
-    "<P>Letters Already Guessed: " + guessedWord + "</P>";
 
-    document.querySelector("#game").innerHTML = html;
-*/
-/*
-    var html = 
-	"<h1> The Psychic Game ---Start!!!</h1>" +
-	"<p>Guess what letter I'm thinking of</p>" +
-	"<p>Wins: " + wins + "</p>" +
-	"<p>Losses: " + losses + "</p>" +
-	"<p>Guesses Left: " + numGuesses + "</p>" +
-	"<p>Your Guesses so far: " + guessChoices.join(", ") + "</p>";
+    //judge win or lose
+    function winOrLose(){
+        if((!guessedWord.includes("_")) && guessesLeft > 0){
+            wins++;
+            alert('Winner!');
+        } else {
+            if (guessesLeft === 0) {
+                alert('Loser!');
+            }
+        }
+    }
 
-    document.querySelector("#game").innerHTML = html;
-*/
-
-
+    //guessedWordLine();
 //========================================================================
 //start game!!!!
+
+
 
 
